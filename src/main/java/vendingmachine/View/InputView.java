@@ -36,6 +36,10 @@ public class InputView {
         return result;
     }
 
+    public String inputToBuyProduct() {
+        return readInput();
+    }
+
     private String readInput() {
         return Console.readLine();
     }
