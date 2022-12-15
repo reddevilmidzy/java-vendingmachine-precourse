@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import vendingmachine.model.Product;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
@@ -29,7 +28,7 @@ public class InputView {
     public List<Product> inputMerchandise() {
         List<Product> result = new ArrayList<>();
         String input = readInput();
-        List<String> merchandises = Arrays.asList(input.split(INDIVIDUAL_PRODUCT_SEPARATE));
+        String[] merchandises = input.split(INDIVIDUAL_PRODUCT_SEPARATE);
         for (String merchandise : merchandises) {
             result.add(splitOption(merchandise));
         }
@@ -39,7 +38,7 @@ public class InputView {
     public String inputToBuyProduct() {
         return readInput();
     }
-
+    
     private String readInput() {
         return Console.readLine();
     }
