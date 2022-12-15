@@ -1,4 +1,4 @@
-package vendingmachine.View;
+package vendingmachine.view;
 
 import vendingmachine.model.Coin;
 

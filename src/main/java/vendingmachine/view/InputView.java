@@ -1,4 +1,4 @@
-package vendingmachine.View;
+package vendingmachine.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import vendingmachine.model.Product;

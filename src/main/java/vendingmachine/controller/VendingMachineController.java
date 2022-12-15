@@ -1,7 +1,7 @@
 package vendingmachine.controller;
 
-import vendingmachine.View.InputView;
-import vendingmachine.View.OutputView;
+import vendingmachine.view.InputView;
+import vendingmachine.view.OutputView;
 import vendingmachine.model.CoinMaker;
 import vendingmachine.model.Product;
 
