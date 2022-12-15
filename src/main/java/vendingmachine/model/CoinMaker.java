@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CoinMaker {
-    public List<Integer> makeCoin(Integer vendingMachineAmount) {
+    public static List<Integer> makeCoin(Integer vendingMachineAmount) {
         List<Integer> result = new ArrayList<>();
         while (vendingMachineAmount != 0) {
             int coin = Randoms.pickNumberInList(Coin.getCoins());
