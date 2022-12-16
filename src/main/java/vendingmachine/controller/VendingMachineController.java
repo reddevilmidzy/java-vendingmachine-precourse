@@ -23,22 +23,22 @@ public class VendingMachineController {
         outputView.printMachineHoldingMoney(machineHoldingMoney);
         List<Product> merchandises = inputView.inputMerchandise();
         Integer amount = inputView.inputAmount();
-        run(merchandises, amount);
-        outputView.printChanges(machineHoldingMoney);
+        run(machineHoldingMoney, amount);
     }
 
-    private void run(List<Product> merchandises, Integer amount) {
+    private void run(List<Integer> machineHoldingMoney, Integer amount) {
         while (Product.canBuy(amount)) {
             outputView.printAmount(amount);
             String toBuyProduct = inputView.inputToBuyProduct();
             Product.buy(toBuyProduct);
             amount -= Product.getPrice(toBuyProduct);
         }
+        giveChange(machineHoldingMoney, amount);
     }
 
     private void giveChange(List<Integer> machineHoldingMoney, Integer amount) {
         outputView.printAmount(amount);
         List<Integer> change = Coin.getChange(machineHoldingMoney, amount);
-        outputView.printMachineHoldingMoney(change);
+        outputView.printChanges(change);
     }
 }

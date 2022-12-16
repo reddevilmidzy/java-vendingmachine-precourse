@@ -27,11 +27,14 @@ public enum Coin {
 
     public static List<Integer> getChange(List<Integer> machineHoldingMoney, Integer amount) {
         List<Integer> result = new ArrayList<>();
-        Collections.sort(machineHoldingMoney);
+        machineHoldingMoney.sort(Collections.reverseOrder());
         for (Integer coin : machineHoldingMoney) {
-            if (amount / coin > 0) {
+            if (amount - coin >= 0) {
                 result.add(coin);
-                amount %= coin;
+                amount -= coin;
+            }
+            if (amount < 0) {
+                break;
             }
         }
         return result;
