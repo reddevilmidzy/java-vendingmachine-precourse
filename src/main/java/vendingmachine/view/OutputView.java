@@ -19,7 +19,11 @@ public class OutputView {
             printChangesSingle(changes, coin);
         }
     }
-    
+
+    public void printAmount(int amount) {
+        System.out.println("투입 금액: " + amount + "원");
+    }
+
     private void printMachineHoldingMoneySingle(List<Integer> machineHoldingMoney, Coin coin) {
         int coinCount = Coin.getAmount(coin);
         System.out.println(coinCount + "원 - " + Collections.frequency(machineHoldingMoney, coinCount) + "개");
