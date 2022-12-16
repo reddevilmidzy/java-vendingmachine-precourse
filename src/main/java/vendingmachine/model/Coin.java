@@ -23,4 +23,8 @@ public enum Coin {
         }
         return result;
     }
+
+    public static int getAmount(Coin coin) {
+        return coin.amount;
+    }
 }

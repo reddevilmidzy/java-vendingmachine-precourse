@@ -19,6 +19,7 @@ public class VendingMachineController {
     public void run() {
         Integer vendingMachineAmount = inputView.inputVendingMachineAmount();
         List<Integer> machineHoldingMoney = CoinMaker.makeCoin(vendingMachineAmount);
+        System.out.println(machineHoldingMoney.toString());
         outputView.printMachineHoldingMoney(machineHoldingMoney);
         List<Product> merchandises = inputView.inputMerchandise();
         Integer amount = inputView.inputAmount();
