@@ -1,6 +1,7 @@
 package vendingmachine.controller;
 
 import vendingmachine.model.Coin;
+import vendingmachine.model.MachineAmount;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 import vendingmachine.model.CoinMaker;
@@ -18,11 +19,11 @@ public class VendingMachineController {
     }
 
     public void start() {
-        Integer vendingMachineAmount = inputView.inputVendingMachineAmount();
-        List<Integer> machineHoldingMoney = CoinMaker.makeCoin(vendingMachineAmount);
+        Integer vendingMachineAmount = inputVendingMachineAmount();
+        List<Integer> machineHoldingMoney = new MachineAmount(vendingMachineAmount).makeCoin();
         outputView.printMachineHoldingMoney(machineHoldingMoney);
-        List<Product> merchandises = inputView.inputMerchandise();
-        Integer amount = inputView.inputAmount();
+        List<Product> merchandises = inputMerchandise();
+        Integer amount = inputAmount();
         run(machineHoldingMoney, amount);
     }
 
@@ -40,5 +41,32 @@ public class VendingMachineController {
         outputView.printAmount(amount);
         List<Integer> change = Coin.getChange(machineHoldingMoney, amount);
         outputView.printChanges(change);
+    }
+
+    private Integer inputVendingMachineAmount() {
+        try {
+            return inputView.inputVendingMachineAmount();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return inputVendingMachineAmount();
+        }
+    }
+
+    private List<Product> inputMerchandise() {
+        try {
+            return inputView.inputMerchandise();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return inputMerchandise();
+        }
+    }
+
+    private Integer inputAmount() {
+        try {
+            return inputView.inputAmount();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return inputAmount();
+        }
     }
 }

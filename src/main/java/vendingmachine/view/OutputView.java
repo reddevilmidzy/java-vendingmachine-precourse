@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
+    private static final String ERROR_MESSAGE = "[ERROR] ";
+
     public void printMachineHoldingMoney(List<Integer> machineHoldingMoney) {
         System.out.println("자판기가 보유한 동전");
         for (Coin coin : Coin.values()) {
@@ -22,6 +24,10 @@ public class OutputView {
 
     public void printAmount(int amount) {
         System.out.println("투입 금액: " + amount + "원");
+    }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println(ERROR_MESSAGE + e.getMessage());
     }
 
     private void printMachineHoldingMoneySingle(List<Integer> machineHoldingMoney, Coin coin) {

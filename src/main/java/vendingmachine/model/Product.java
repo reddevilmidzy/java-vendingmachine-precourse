@@ -53,9 +53,6 @@ public class Product {
         totalCount--;
     }
 
-    public static Map<String, Integer> getProductCount() {
-        return productCount;
-    }
     private void validate(int price) {
         if (price < MIN_PRICE) {
             throw new IllegalArgumentException("상품 가격은 최소 100원부터 시작합니다.");
