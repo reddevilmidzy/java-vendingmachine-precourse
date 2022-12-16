@@ -1,6 +1,7 @@
 package vendingmachine.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public enum Coin {
@@ -20,6 +21,18 @@ public enum Coin {
         List<Integer> result = new ArrayList<>();
         for (Coin coin : Coin.values()) {
             result.add(coin.amount);
+        }
+        return result;
+    }
+
+    public static List<Integer> getChange(List<Integer> machineHoldingMoney, Integer amount) {
+        List<Integer> result = new ArrayList<>();
+        Collections.sort(machineHoldingMoney);
+        for (Integer coin : machineHoldingMoney) {
+            if (amount / coin > 0) {
+                result.add(coin);
+                amount %= coin;
+            }
         }
         return result;
     }

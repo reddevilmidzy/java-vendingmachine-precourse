@@ -1,5 +1,6 @@
 package vendingmachine.controller;
 
+import vendingmachine.model.Coin;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 import vendingmachine.model.CoinMaker;
@@ -16,15 +17,28 @@ public class VendingMachineController {
         this.outputView = new OutputView();
     }
 
-    public void run() {
+    public void start() {
         Integer vendingMachineAmount = inputView.inputVendingMachineAmount();
         List<Integer> machineHoldingMoney = CoinMaker.makeCoin(vendingMachineAmount);
-        System.out.println(machineHoldingMoney.toString());
         outputView.printMachineHoldingMoney(machineHoldingMoney);
         List<Product> merchandises = inputView.inputMerchandise();
         Integer amount = inputView.inputAmount();
-        //ToDo: 구매 가능할 떄까지 반복
-        String ToBuyProduct = inputView.inputToBuyProduct();
+        run(merchandises, amount);
         outputView.printChanges(machineHoldingMoney);
+    }
+
+    private void run(List<Product> merchandises, Integer amount) {
+        while (Product.canBuy(amount)) {
+            outputView.printAmount(amount);
+            String toBuyProduct = inputView.inputToBuyProduct();
+            Product.buy(toBuyProduct);
+            amount -= Product.getPrice(toBuyProduct);
+        }
+    }
+
+    private void giveChange(List<Integer> machineHoldingMoney, Integer amount) {
+        outputView.printAmount(amount);
+        List<Integer> change = Coin.getChange(machineHoldingMoney, amount);
+        outputView.printMachineHoldingMoney(change);
     }
 }
