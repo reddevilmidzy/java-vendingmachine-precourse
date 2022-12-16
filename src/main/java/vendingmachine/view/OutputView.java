@@ -31,8 +31,8 @@ public class OutputView {
 
     private void printChangesSingle(List<Integer> changesAmount, Coin coin) {
         int changesCount = Collections.frequency(changesAmount, Coin.getAmount(coin));
-        if (changesCount >= 0) {
-            System.out.println(coin + "원 - " + changesCount + "개");
+        if (changesCount > 0) {
+            System.out.println(Coin.getAmount(coin) + "원 - " + changesCount + "개");
         }
     }
 }
