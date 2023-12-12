@@ -16,4 +16,16 @@ public class Amount {
     private static void validate(String value) {
         //TODO: 검증
     }
+
+    public boolean canChange(int coin) {
+        return amount >= coin;
+    }
+
+    public boolean hasAmount() {
+        return amount >= 10;
+    }
+
+    public Amount exchange(int coin) {
+        return new Amount(amount - coin);
+    }
 }

@@ -1,6 +1,8 @@
 package vendingmachine.controller;
 
 import vendingmachine.model.Amount;
+import vendingmachine.model.HoldingAmount;
+import vendingmachine.service.Exchange;
 import vendingmachine.view.OutputView;
 
 public class VendingMachineController {
@@ -14,7 +16,9 @@ public class VendingMachineController {
     }
 
     public void run() {
-        Amount holdingAmount = inputController.getMachineHoldingAmount();
+        Amount amount = inputController.getMachineHoldingAmount();
+        Exchange exchange = new Exchange();
+        HoldingAmount holdingAmount = exchange.exchangeCoin(amount);
 
     }
 }
