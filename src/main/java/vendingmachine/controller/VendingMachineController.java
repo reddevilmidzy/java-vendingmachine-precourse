@@ -19,6 +19,7 @@ public class VendingMachineController {
         Amount amount = inputController.getMachineHoldingAmount();
         Exchange exchange = new Exchange();
         HoldingAmount holdingAmount = exchange.exchangeCoin(amount);
+        outputView.printHoldingCoins(holdingAmount);
 
     }
 }
