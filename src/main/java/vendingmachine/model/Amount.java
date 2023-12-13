@@ -37,4 +37,8 @@ public class Amount {
     public Amount exchange(int coin) {
         return new Amount(amount - coin);
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

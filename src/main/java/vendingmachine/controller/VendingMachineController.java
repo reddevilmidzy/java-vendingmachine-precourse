@@ -24,5 +24,6 @@ public class VendingMachineController {
         outputView.printHoldingCoins(holdingAmount);
         List<Item> items = inputController.getItem();
         Amount inputAmount = inputController.getInputAmount();
+        outputView.printCurrentInputAmount(inputAmount);
     }
 }
