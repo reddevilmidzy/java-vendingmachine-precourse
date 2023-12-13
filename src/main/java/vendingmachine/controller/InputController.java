@@ -63,18 +63,18 @@ public class InputController {
         return Amount.from(value);
     }
 
-    public Item getBuyItem() {
+    public Item getBuyItem(ItemRepository itemRepository) {
         while (true) {
             try {
-                return readBuyItem();
+                return readBuyItem(itemRepository);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception);
             }
         }
     }
 
-    private Item readBuyItem() {
+    private Item readBuyItem(ItemRepository itemRepository) {
         String value = inputView.readBuyItem();
-        return ItemRepository.findByItemName(value);
+        return itemRepository.findByItemName(value);
     }
 }

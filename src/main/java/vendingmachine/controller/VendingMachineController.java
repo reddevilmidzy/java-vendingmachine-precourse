@@ -24,17 +24,33 @@ public class VendingMachineController {
         HoldingAmount holdingAmount = exchange.exchangeCoin(machineHoldingAmount);
         outputView.printHoldingCoins(holdingAmount);
         List<Item> items = inputController.getItem();
-        registerItem(items);
+        ItemRepository itemRepository = new ItemRepository();
+        registerItem(itemRepository, items);
         Amount inputAmount = inputController.getInputAmount();
 
-        outputView.printCurrentInputAmount(inputAmount);
-        Item buyItem = inputController.getBuyItem();
+        /**
+         * 종료 조건
+         * 1. 남은 금액이 상품의 최저 가격 낮음
+         * 2. 모든 상품이 소진된 경우
+         *
+         * 예외 조건
+         * 1. 사용자가 구매하려는 물건이 가지고 있는 돈보다 큰경우
+         * IllegalStatusException
+         */
+        while (itemRepository.hasSomeItem() && itemRepository.canBuySome(inputAmount)) {
+            outputView.printCurrentInputAmount(inputAmount);
+            Item item = inputController.getBuyItem(itemRepository);
+            inputAmount = inputAmount.buyItem(item);
+            itemRepository.buyItem(item);
 
+            System.out.println(itemRepository);
+
+        }
     }
 
-    private void registerItem(List<Item> items) {
+    private void registerItem(ItemRepository itemRepository, List<Item> items) {
         for (Item item : items) {
-            ItemRepository.addItem(item);
+            itemRepository.addItem(item);
         }
     }
 }

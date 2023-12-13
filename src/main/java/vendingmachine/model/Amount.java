@@ -38,6 +38,10 @@ public class Amount {
         return new Amount(amount - coin);
     }
 
+    public Amount buyItem(Item item) {
+        return new Amount(amount - item.getPrice());
+    }
+
     public int getAmount() {
         return amount;
     }

@@ -78,6 +78,22 @@ public class Item {
         return this.name.equals(name);
     }
 
+    public boolean hasItem() {
+        return quantity > 0;
+    }
+
+    public void buyItem() {
+        quantity--;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
