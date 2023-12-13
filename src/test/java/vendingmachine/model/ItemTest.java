@@ -27,4 +27,11 @@ class ItemTest {
         assertThat(matches).isTrue();
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"[콜라,99,10]", "[아아,3001,10]"})
+    @DisplayName("상품 금액 검증 최소 100, 10으로 나누어 떨어지는지")
+    void createMinPrice(String value) {
+        assertThatThrownBy(() ->
+                Item.from(value)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
