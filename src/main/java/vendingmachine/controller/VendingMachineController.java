@@ -1,7 +1,9 @@
 package vendingmachine.controller;
 
+import java.util.List;
 import vendingmachine.model.Amount;
 import vendingmachine.model.HoldingAmount;
+import vendingmachine.model.Item;
 import vendingmachine.service.Exchange;
 import vendingmachine.view.OutputView;
 
@@ -20,6 +22,6 @@ public class VendingMachineController {
         Exchange exchange = new Exchange();
         HoldingAmount holdingAmount = exchange.exchangeCoin(amount);
         outputView.printHoldingCoins(holdingAmount);
-
+        List<Item> items = inputController.getItem();
     }
 }
