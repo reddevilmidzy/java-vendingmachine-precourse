@@ -15,7 +15,7 @@ public class Item {
     private int quantity;
 
     private Item(String value) {
-        String[] splitItem = value.substring(1, value.length() - 2).split(",");
+        String[] splitItem = value.substring(1, value.length() - 1).split(",");
         this.name = splitItem[0];
         int priceValue = validateAndConvert(splitItem[1]);
         validatePrice(priceValue);
@@ -72,6 +72,21 @@ public class Item {
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("올바른 숫자가 아닙니다.");
         }
+    }
+
+    public boolean sameName(String name) {
+        return this.name.equals(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Item item)) {
+            return false;
+        }
+        return name.equals(item.name) && price == item.price;
     }
 
     @Override

@@ -25,6 +25,13 @@ public class InputView {
         return value;
     }
 
+    public String readBuyItem() {
+        System.out.println("구매할 상품명을 입력해 주세요.");
+        String value = readLine();
+        System.out.println();
+        return value;
+    }
+
     protected String readLine() {
         return Console.readLine();
     }

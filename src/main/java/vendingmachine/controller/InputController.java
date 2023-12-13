@@ -3,6 +3,7 @@ package vendingmachine.controller;
 import java.util.List;
 import vendingmachine.model.Amount;
 import vendingmachine.model.Item;
+import vendingmachine.repository.ItemRepository;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
 
@@ -60,5 +61,20 @@ public class InputController {
     private Amount readInputAmount() {
         String value = inputView.readInputAmount();
         return Amount.from(value);
+    }
+
+    public Item getBuyItem() {
+        while (true) {
+            try {
+                return readBuyItem();
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception);
+            }
+        }
+    }
+
+    private Item readBuyItem() {
+        String value = inputView.readBuyItem();
+        return ItemRepository.findByItemName(value);
     }
 }
