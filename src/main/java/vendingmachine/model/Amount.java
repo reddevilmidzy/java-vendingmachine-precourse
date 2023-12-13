@@ -14,13 +14,15 @@ public class Amount {
     }
 
     private static int validateAndConvert(String value) {
-        validateType(value);
+        validateTypeAndRange(value);
         return Integer.parseInt(value);
     }
 
-    private static void validateType(String value) {
+    private static void validateTypeAndRange(String value) {
         try {
-            Integer.parseInt(value);
+            if (Integer.parseInt(value) < 0) {
+                throw new IllegalArgumentException("0이상 입력해주세요.");
+            }
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("올바른 숫자가 아닙니다.");
         }
