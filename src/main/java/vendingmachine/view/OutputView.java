@@ -24,4 +24,10 @@ public class OutputView {
     public void printCurrentInputAmount(Amount amount) {
         System.out.printf(INPUT_AMOUNT_FORM, amount.getAmount());
     }
+
+    public void printChanges(HoldingAmount amount) {
+        System.out.println("잔돈");
+        amount.forEach(((coin, count) ->
+                System.out.printf(HOLDING_COIN_FORM, coin.getAmount(), count)));
+    }
 }

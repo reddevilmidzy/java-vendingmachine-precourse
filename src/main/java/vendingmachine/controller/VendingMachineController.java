@@ -42,10 +42,10 @@ public class VendingMachineController {
             Item item = inputController.getBuyItem(itemRepository);
             inputAmount = inputAmount.buyItem(item);
             itemRepository.buyItem(item);
-
-            System.out.println(itemRepository);
-
         }
+        outputView.printCurrentInputAmount(inputAmount);
+        HoldingAmount changes = holdingAmount.changes(inputAmount);
+        outputView.printChanges(changes);
     }
 
     private void registerItem(ItemRepository itemRepository, List<Item> items) {

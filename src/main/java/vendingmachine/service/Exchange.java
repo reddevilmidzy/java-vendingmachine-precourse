@@ -19,7 +19,7 @@ public class Exchange {
                 amount = amount.exchange(coinAmount);
             }
         }
-        return HoldingAmount.from(result);
+        return HoldingAmount.amountHeldFrom(result);
     }
 
     private int pickRandom(List<Integer> candidate) {
