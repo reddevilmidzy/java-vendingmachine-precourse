@@ -28,7 +28,7 @@ public class InputController {
     }
 
     private Amount readAmount() {
-        String value = inputView.readAmount();
+        String value = inputView.readHoldingAmount();
         return Amount.from(value);
     }
 
@@ -45,5 +45,20 @@ public class InputController {
     private List<Item> readItem() {
         String value = inputView.readItem();
         return Item.from(value);
+    }
+
+    public Amount getInputAmount() {
+        while (true) {
+            try {
+                return readInputAmount();
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception);
+            }
+        }
+    }
+
+    private Amount readInputAmount() {
+        String value = inputView.readInputAmount();
+        return Amount.from(value);
     }
 }

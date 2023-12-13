@@ -18,10 +18,11 @@ public class VendingMachineController {
     }
 
     public void run() {
-        Amount amount = inputController.getMachineHoldingAmount();
+        Amount machineHoldingAmount = inputController.getMachineHoldingAmount();
         Exchange exchange = new Exchange();
-        HoldingAmount holdingAmount = exchange.exchangeCoin(amount);
+        HoldingAmount holdingAmount = exchange.exchangeCoin(machineHoldingAmount);
         outputView.printHoldingCoins(holdingAmount);
         List<Item> items = inputController.getItem();
+        Amount inputAmount = inputController.getInputAmount();
     }
 }
