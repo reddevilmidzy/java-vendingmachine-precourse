@@ -9,12 +9,21 @@ public class Amount {
     }
 
     public static Amount from(String value) {
-        validate(value);
-        return new Amount(Integer.parseInt(value));
+        int amount = validateAndConvert(value);
+        return new Amount(amount);
     }
 
-    private static void validate(String value) {
-        //TODO: 검증
+    private static int validateAndConvert(String value) {
+        validateType(value);
+        return Integer.parseInt(value);
+    }
+
+    private static void validateType(String value) {
+        try {
+            Integer.parseInt(value);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("올바른 숫자가 아닙니다.");
+        }
     }
 
     public boolean canChange(int coin) {
